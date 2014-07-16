@@ -1,15 +1,20 @@
 [submodule "android"]
 	path = android
 	url = https://github.com/osmandapp/Osmand
+	ignore = dirty
 [submodule "tools"]
 	path = tools
 	url = https://github.com/osmandapp/OsmAnd-tools
+	ignore = dirty
 [submodule "resources"]
 	path = resources
 	url = https://github.com/osmandapp/OsmAnd-resources
+	ignore = dirty
 [submodule "core"]
 	path = core
 	url = https://github.com/osmandapp/OsmAnd-core
+	ignore = dirty
 [submodule "build"]
 	path = build
 	url = https://github.com/osmandapp/OsmAnd-build
+	ignore = dirty
