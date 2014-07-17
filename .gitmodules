@@ -18,3 +18,6 @@
 	path = build
 	url = https://github.com/osmandapp/OsmAnd-build
 	ignore = dirty
+[submodule "help"]
+	path = help
+	url = https://github.com/osmandapp/osmandapp.github.io
