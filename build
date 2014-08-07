@@ -1,0 +1,33 @@
+#!/bin/bash -ex
+
+# Uses ANDROID_SDK instead of ANDROID_HOME
+if [[ -z $ANDROID_SDK ]] && [[ -n $ANDROID_HOME ]]
+then
+	export ANDROID_SDK="$ANDROID_HOME"
+fi
+
+[[ -d android/OsmAnd ]] && cd android/OsmAnd
+
+# Replace the name given to the full paid app
+sed -i 's/"OsmAnd+"/"OsmAnd~"/g' build.xml
+
+# Build native code
+./old-ndk-build.sh
+
+# Build the rest
+ant \
+	-Dsdk.dir="$ANDROID_SDK" \
+	-Dndk.dir="$ANDROID_NDK" \
+	-DBLACKBERRY_BUILD=false \
+	-DBUILD_SUFFIX= \
+	-DAPK_NUMBER_VERSION=183 \
+	"-DFEATURES=+play_market +gps_status -parking_plugin -blackberry -amazon -route_nav" \
+	-DCLEAN_CPP=false \
+	-DPACKAGE_TO_BUILT=net.osmand.plus \
+	-DAPK_VERSION=1.8.3 \
+	-Dnet.osmand.plus= \
+	-Dbuild.version=1.8.3 \
+	-Dbuild.version.code=183 \
+	-Dnativeoff=false \
+	"-DversionFeatures=+play_market +gps_status -parking_plugin -blackberry -amazon -route_nav" \
+	clean release
